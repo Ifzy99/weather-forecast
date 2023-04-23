@@ -1,0 +1,13 @@
+body{
+    background-image: url(nature.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+
+.bigDispaly{
+    margin: 0 auto;
+}
+.container2{
+    background-image: linear-gradient(to right, rgba(228, 222, 222, 0.187), rgba(201, 197, 197, 0.991));
+}
