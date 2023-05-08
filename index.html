@@ -44,41 +44,52 @@
             <div class=" container2 shadow-lg col-12 col-md-4 p-5 mt-3">
                 <div class="row">
                     <div class="col-12 container3">
-                        <div class="row">
-                            <h3 class="mb-5">Weather Details</h3>
-                            <div class="col-6 ">
-                                <h5>Location</h5>
-                                <h5>Description</h5>
-                                <h5>Humidity</h5>
-                                <h5>Wind</h5>
+                        <div class="wrapper">
+                            <div class="sub-header">
+                                <!-- <div>
+                                  <h5>Location</h5>
+                                  <h4 id="locate"></h5>
+                                </div> -->
+                                <!-- <div>
+                                    <h5>Description</h5>
+                                    <h4 id="description"></h5>
+                                </div> -->
+                                 <div>
+                                    <h5>Humidity</h5>
+                                    <h4 id="humidity"></h5>
+                                 </div>
+                                 <div>
+                                    <h5>Pressure</h5>
+                                    <h4 id="pressure"></h5>
+                                </div>
+                                 <div>
+                                    <h5>Wind Speed</h5>
+                                    <h4 id="wind"></h5>
+                                 </div>
                             </div>
-                            <div class="col-6">
-                                <h4 id="locate"></h5>
-                                <h4 id="description"></h5>
-                                <h4 id="humidity"></h5>
-                                <h4 id="wind"></h5>
-                            </div>
+                           
                         </div>
                     </div>
                     <div class="col-12 pt-5">
-                        <div class="row">
-                            <div class="col-6">
-                                <h5>Min</h5>
-                                <h5>Max</h5>
-                                <h5>Feels</h5>
-                                <h5>Pressure</h5>
-                                
-                            </div>
-                            <div class="col-6">
-                                <h4 id="minimum"></h5>
-                                <h4 id="maximum"></h5>
-                                <h4 id="feels"></h5>
-                                <h4 id="pressure"></h5>
+                        <div class="wrapper">
+                            <div class="sub-header">
+                                <div>
+                                    <h5>Min</h5>
+                                    <h4 id="minimum"></h5>   
+                                </div>
+                                <div>
+                                    <h5>Max</h5>
+                                    <h4 id="maximum"></h5>
+                                </div>
+                                <div>
+                                    <h5>Real feel</h5>
+                                    <h4 id="feels"></h5>     
+                                </div>                                          
                             </div> 
-                            <h6> Designed by <b class="ms-2">Ifzy</b> </h6>
                         </div>
                     </div>
                 </div>
+                <h6 class="pt-5 text-center"> Designed by <b class="ms-2">Ifzy</b> </h6>
             </div>
         </div>
         <script>
@@ -93,8 +104,8 @@
             loading.innerHTML = ''
             SearchLocation.innerHTML = "";
             let res = convertedResponse
-            locate.innerHTML = `${res.name}, ${res.sys.country}`
-            description.innerHTML = `${res.weather[0].description}`
+            // locate.innerHTML = `${res.name}, ${res.sys.country}`
+            // description.innerHTML = `${res.weather[0].description}`
             humidity.innerHTML = `${res.main.humidity}%`
             wind.innerHTML = `${res.wind.speed} m/s`
             minimum.innerHTML = `${(res.main.temp_min-273).toFixed(1)}℃`
@@ -116,8 +127,8 @@
             .then((convertedResponse)=> {
                 loading.innerHTML = ''
                 let convert = convertedResponse
-                locate.innerHTML = `${convert.name}, ${convert.sys.country}`
-                description.innerHTML = `${convert.weather[0].description}`
+                // locate.innerHTML = `${convert.name}, ${convert.sys.country}`
+                // description.innerHTML = `${convert.weather[0].description}`
                 humidity.innerHTML = `${convert.main.humidity}%`
                 wind.innerHTML = `${convert.wind.speed} m/s`
                 minimum.innerHTML = `${(convert.main.temp_min-273).toFixed(1)}℃`
