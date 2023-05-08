@@ -8,6 +8,10 @@
     <link rel="icon" href="favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
      <link rel="stylesheet" href="weather.css">
+
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
 </head>
     <style>
        
@@ -18,9 +22,18 @@
         <div class="row text-light">
             <div class="col-12 col-md-8 ps-5 pt-3 bigDispaly">
                 <div class="row">
-                    <div class="col-12">
-                        <input type="text" id="SearchLocation" placeholder="Input Location..." oninput="search ()">
-                    </div>
+                    <div class="input-wrapper">
+                        <button class="icon"> 
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="20px" width="20px">
+                            <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#fff" d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"></path>
+                            <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#fff" d="M22 22L20 20"></path>
+                          </svg>
+                        </button>
+                        <input id="SearchLocation" placeholder="Enter location" class="input" name="text" type="text" oninput="search ()">
+                      </div>
+                   
+                    
+                    
                     <div class="col-12 locate">
                         <div id="displayTemp"><h1 style="font-size: 100px;"></h1></div>
                         <div class="fs-3" id="displayLocation"></div>
@@ -40,10 +53,10 @@
                                 <h5>Wind</h5>
                             </div>
                             <div class="col-6">
-                                <h5 id="locate"></h5>
-                                <h5 id="description"></h5>
-                                <h5 id="humidity"></h5>
-                                <h5 id="wind"></h5>
+                                <h4 id="locate"></h5>
+                                <h4 id="description"></h5>
+                                <h4 id="humidity"></h5>
+                                <h4 id="wind"></h5>
                             </div>
                         </div>
                     </div>
@@ -57,10 +70,10 @@
                                 
                             </div>
                             <div class="col-6">
-                                <h5 id="minimum"></h5>
-                                <h5 id="maximum"></h5>
-                                <h5 id="feels"></h5>
-                                <h5 id="pressure"></h5>
+                                <h4 id="minimum"></h5>
+                                <h4 id="maximum"></h5>
+                                <h4 id="feels"></h5>
+                                <h4 id="pressure"></h5>
                             </div> 
                             <h6> Designed by <b class="ms-2">Ifzy</b> </h6>
                         </div>
