@@ -45,20 +45,19 @@
             <div class=" container2 shadow-lg col-12 col-md-4 p-5 mt-3">
                 <div class="row">
                     <div class="col-12 container3">
-                        <div class="wrapper">
-                            <div class="sub-header">
-                                 <div>
-                                    <h5>Humidity</h5>
-                                    <h4 id="humidity"></h5>
-                                 </div>
-                                 <div>
-                                    <h5>Pressure</h5>
-                                    <h4 id="pressure"></h5>
-                                </div>
-                                 <div>
-                                    <h5>Wind Speed</h5>
-                                    <h4 id="wind"></h5>
-                                 </div>
+                        <div class="row">
+                            <h3 class="mb-5">Weather Details</h3>
+                            <div class="col-6 ">
+                                <h5>Location</h5>
+                                <h5>Description</h5>
+                                <h5>Humidity</h5>
+                                <h5>Wind</h5>
+                            </div>
+                            <div class="col-6">
+                                <h5 id="locate"></h5>
+                                <h5 id="description"></h5>
+                                <h5 id="humidity"></h5>
+                                <h5 id="wind"></h5>
                             </div>
                            
                         </div>
@@ -82,7 +81,6 @@
                         </div>
                     </div>
                 </div>
-                <h6 class="pt-5 text-center"> Designed by <b class="ms-1">IFZY</b> </h6>
             </div>
         </div>
         <script>
@@ -151,6 +149,8 @@
             .then((convertedResponse)=> {
                 loading.innerHTML = ''
                 let convert = convertedResponse
+                locate.innerHTML = `${convert.name}, ${convert.sys.country}`
+                description.innerHTML = `${convert.weather[0].description}`
                 humidity.innerHTML = `${convert.main.humidity}%`
                 wind.innerHTML = `${convert.wind.speed} m/s`
                 minimum.innerHTML = `${(convert.main.temp_min-273).toFixed(1)}℃`
