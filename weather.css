@@ -6,6 +6,7 @@ body {
   height: 100vh;
   position: relative;
   font-family: "Bai Jamjuree", sans-serif;
+  overflow:hidden;
 }
 
 .bigDispaly {
