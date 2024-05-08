@@ -1,195 +1,279 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="icon" href="favicon.ico">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-     <link rel="stylesheet" href="weather.css">
+    <link rel="icon" href="favicon.ico" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="weather.css" />
 
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
-</head>
-    <style>
-       
-    </style>
-<body onload="getLocation()" id="body">
-    
-        <div id="loading"></div>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Handlee&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <style></style>
+  <body onload="getLocation()" id="body">
+    <div id="loading" class="loader"><span></span></div>
 
-        <div class="row text-light">
-            <div class="col-12 col-md-8 ps-5 pt-3 bigDisplay">
-                <div class="row">
-                    <div class="input-wrapper">
-                        <button class="icon"> 
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" height="20px" width="20px">
-                                <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#fff" d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"></path>
-                                <path stroke-linejoin="round" stroke-linecap="round" stroke-width="1.5" stroke="#fff" d="M22 22L20 20"></path>
-                            </svg>
-                        </button>
-                        <input id="SearchLocation" placeholder="Enter location" class="input" name="text" type="text" oninput="search()">
-                    </div>
-                    <div class="col-12 locate">
-                        <div id="displayTemp"><h1 style="font-size: 100px;"></h1></div>
-                        <div class="fs-3" id="displayLocation"></div>
-                        <div id="displayDescription"></div>
-                    </div>
-                </div>
+    <div class="row text-light">
+      <div class="col-12 col-md-8 ps-5 pt-3 bigDisplay">
+        <div class="row">
+          <div class="input-wrapper">
+            <button class="icon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                height="20px"
+                width="20px"
+              >
+                <path
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                  stroke-width="1.5"
+                  stroke="#fff"
+                  d="M11.5 21C16.7467 21 21 16.7467 21 11.5C21 6.25329 16.7467 2 11.5 2C6.25329 2 2 6.25329 2 11.5C2 16.7467 6.25329 21 11.5 21Z"
+                ></path>
+                <path
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                  stroke-width="1.5"
+                  stroke="#fff"
+                  d="M22 22L20 20"
+                ></path>
+              </svg>
+            </button>
+            <input
+              id="SearchLocation"
+              placeholder="Enter location"
+              class="input"
+              name="text"
+              type="text"
+              oninput="search()"
+            />
+          </div>
+          <div class="col-12 locate">
+            <div id="displayTemp">
+              <h1 style="font-size: 100px; color: #6c6161"></h1>
             </div>
-            <div class="container2 shadow-lg col-12 col-md-4 p-5 mt-3">
-                <div class="row">
-                    <div class="col-12 container3">
-                        <div class="wrapper">
-                            <div class="sub-header">
-                                <div>
-                                    <h5>Humidity</h5>
-                                    <h4 id="humidity"></h4>
-                                </div>
-                                <div>
-                                    <h5>Pressure</h5>
-                                    <h4 id="pressure"></h4>
-                                </div>
-                                <div>
-                                    <h5>Wind Speed</h5>
-                                    <h4 id="wind"></h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 pt-5">
-                        <div class="wrapper">
-                            <div class="sub-header">
-                                <div>
-                                    <h5>Min</h5>
-                                    <h4 id="minimum"></h4>
-                                </div>
-                                <div>
-                                    <h5>Max</h5>
-                                    <h4 id="maximum"></h4>
-                                </div>
-                                <div>
-                                    <h5>Real feel</h5>
-                                    <h4 id="feels"></h4>
-                                </div>
-                            </div> 
-                        </div>
-                    </div>
-                </div>
-                <h6 class="pt-5 text-center">Designed by <b class="ms-1">IFZY</b></h6>
-            </div>
+            <div class="fs-3" id="displayLocation"></div>
+            <div id="displayDescription"></div>
+          </div>
         </div>
-        
-        <script>
-            let key = "3b8e541fa9db321676c5f7497b47ab27";
-        
-            function search() {
-                loading.innerHTML = '<h1>Loading....</h1>';
-                let cityName = SearchLocation.value;
-                let endpoint = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${key}`;
-                fetch(endpoint)
-                .then((response)=> response.json())
-                .then((convertedResponse)=> {
-                    loading.innerHTML = '';
-                    SearchLocation.innerHTML = '';
-                    let res = convertedResponse;
-                    document.getElementById('humidity').innerHTML = `${res.main.humidity}%`;
-                    document.getElementById('pressure').innerHTML = `${res.main.pressure} hPa`;
-                    document.getElementById('wind').innerHTML = `${res.wind.speed} m/s`;
-                    document.getElementById('minimum').innerHTML = `${(res.main.temp_min-273).toFixed(1)}℃`;
-                    document.getElementById('maximum').innerHTML = `${(res.main.temp_max-273).toFixed(1)}℃`;
-                    document.getElementById('feels').innerHTML = `${(res.main.feels_like-273).toFixed(1)}℃`;
-                    let temperature = (res.main.temp - 273).toFixed(0);
-                    document.getElementById('displayTemp').innerHTML = `<h1 style='font-size: 100px;'>${temperature}℃</h1>`;
-                    document.getElementById('displayLocation').innerHTML = `${res.name}, ${res.sys.country}`;
-                    document.getElementById('displayDescription').innerHTML = `${res.weather[0].description}`;
-        
-                    // Change background image based on weather description
-                    const body = document.getElementById('body');
-                    const description = res.weather[0].description.toLowerCase();
-        
-                    if (description.includes('clear sky')) {
-                        body.style.backgroundImage = "url('/Images/clear sky.jpg')";
-                    } else if (description.includes('few clouds')) {
-                        body.style.backgroundImage = "url('/Images/few clouds.jpg')";
-                    } else if (description.includes('scattered clouds')) {
-                        body.style.backgroundImage = "url('/Images/scattered cloud.jpg')";
-                    } else if  (description.includes('overcast clouds')) {
-                        body.style.backgroundImage = "url('/Images/overcast cloud.jpg')";
-                    } else if(description.includes('broken clouds')){
-                        body.style.backgroundImage = "url('/Images/broken clouds.webp')";
-                    }else if (description.includes('light rain')) {
-                        body.style.backgroundImage = "url('/Images/light rain.gif')";
-                    }else if (description.includes('heavy rain')) {
-                        body.style.backgroundImage = "url('/Images/heavy rain.gif')";
-                    }else if (description.includes('light snow')) {
-                        body.style.backgroundImage = "url('/Images/light snow.gif')";
-                    }else if (description.includes('mist')) {
-                        body.style.backgroundImage = "url('/Images/mist.avif')";
-                    }else if (description.includes('light drizzle')) {
-                        body.style.backgroundImage = "url('/Images/drizzle.webp')";
-                    } else{
-                        body.style.backgroundImage = "url('photo.jpg')";
-                    }
-                });
-            }
-        
-            function getLocation() {
-                navigator.geolocation.getCurrentPosition((location)=> {
-                    let latitude = location.coords.latitude;
-                    let longitude = location.coords.longitude;
-                    let endpoint2 = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}`;
-                    fetch(endpoint2)
-                    .then((response)=> response.json())
-                    .then((convertedResponse)=> {
-                        loading.innerHTML = '';
-                        let convert = convertedResponse;
-                        document.getElementById('humidity').innerHTML = `${convert.main.humidity}%`;
-                        document.getElementById('wind').innerHTML = `${convert.wind.speed} m/s`;
-                        document.getElementById('minimum').innerHTML = `${(convert.main.temp_min-273).toFixed(1)}℃`;
-                        document.getElementById('maximum').innerHTML = `${(convert.main.temp_max-273).toFixed(1)}℃`;
-                        document.getElementById('feels').innerHTML = `${(convert.main.feels_like-273).toFixed(1)}℃`;
-                        let temperature = (convert.main.temp - 273).toFixed(0);
-                        document.getElementById('displayTemp').innerHTML = `<h1 style='font-size: 100px;'>${temperature}℃</h1>`;
-                        document.getElementById('displayLocation').innerHTML = `${convert.name}, ${convert.sys.country}`;
-                        document.getElementById('displayDescription').innerHTML = `${convert.weather[0].description}`;
-        
-                        // Change background image based on weather description
-                        const body = document.getElementById('body');
-                        const description = convert.weather[0].description.toLowerCase();
-        
-                        if (description.includes('clear sky')) {
-                        body.style.backgroundImage = "url('/Images/clear sky.jpg')";
-                    } else if (description.includes('few clouds')) {
-                        body.style.backgroundImage = "url('/Images/few clouds.jpg')";
-                    } else if (description.includes('scattered clouds')) {
-                        body.style.backgroundImage = "url('/Images/scattered cloud.jpg')";
-                    } else if  (description.includes('overcast clouds')) {
-                        body.style.backgroundImage = "url('/Images/overcast cloud.jpg')";
-                    } else if(description.includes('broken clouds')){
-                        body.style.backgroundImage = "url('/Images/broken clouds.webp')";
-                    }else if (description.includes('light rain')) {
-                        body.style.backgroundImage = "url('/Images/light rain.gif')";
-                    }else if (description.includes('heavy rain')) {
-                        body.style.backgroundImage = "url('/Images/heavy rain.gif')";
-                    }else if (description.includes('light snow')) {
-                        body.style.backgroundImage = "url('/Images/light snow.gif')";
-                    }else if (description.includes('mist')) {
-                        body.style.backgroundImage = "url('/Images/mist.avif')";
-                    }else if (description.includes('light drizzle')) {
-                        body.style.backgroundImage = "url('/Images/drizzle.webp')";
-                    } else{
-                        body.style.backgroundImage = "url('photo.jpg')";
-                    }
-                    });
-                });
-            }
-        </script>
-        
-    
-    
+      </div>
+      <div class="container2 shadow-lg col-12 col-md-4 p-5 mt-3">
+        <div class="row">
+          <div class="col-12 container3">
+            <div class="wrapper">
+              <div class="sub-header">
+                <div>
+                  <h5>Humidity</h5>
+                  <h4 id="humidity"></h4>
+                </div>
+                <div>
+                  <h5>Pressure</h5>
+                  <h4 id="pressure"></h4>
+                </div>
+                <div>
+                  <h5>Wind Speed</h5>
+                  <h4 id="wind"></h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 pt-5">
+            <div class="wrapper">
+              <div class="sub-header">
+                <div>
+                  <h5>Min</h5>
+                  <h4 id="minimum"></h4>
+                </div>
+                <div>
+                  <h5>Max</h5>
+                  <h4 id="maximum"></h4>
+                </div>
+                <div>
+                  <h5>Real feel</h5>
+                  <h4 id="feels"></h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <h6 class="pt-5 text-center">Designed by <b class="ms-1">IFZY</b></h6>
+      </div>
+    </div>
 
-</body>
+    <script>
+      function showLoader() {
+        const loader = document.getElementById("loading");
+        loader.style.display = "block"; // Show the loader
+      }
+
+      function hideLoader() {
+        const loader = document.getElementById("loading");
+        loader.style.display = "none"; // Hide the loader
+      }
+      let key = "3b8e541fa9db321676c5f7497b47ab27";
+
+      function search() {
+        // loading.innerHTML = "<h1>Loading....</h1>";
+        showLoader();
+        let cityName = SearchLocation.value;
+        let endpoint = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${key}`;
+        fetch(endpoint)
+          .then((response) => response.json())
+          .then((convertedResponse) => {
+            hideLoader();
+            SearchLocation.innerHTML = "";
+            let res = convertedResponse;
+            document.getElementById(
+              "humidity"
+            ).innerHTML = `${res.main.humidity}%`;
+            document.getElementById(
+              "pressure"
+            ).innerHTML = `${res.main.pressure} hPa`;
+            document.getElementById("wind").innerHTML = `${res.wind.speed} m/s`;
+            document.getElementById("minimum").innerHTML = `${(
+              res.main.temp_min - 273
+            ).toFixed(1)}℃`;
+            document.getElementById("maximum").innerHTML = `${(
+              res.main.temp_max - 273
+            ).toFixed(1)}℃`;
+            document.getElementById("feels").innerHTML = `${(
+              res.main.feels_like - 273
+            ).toFixed(1)}℃`;
+            let temperature = (res.main.temp - 273).toFixed(0);
+            document.getElementById(
+              "displayTemp"
+            ).innerHTML = `<h1 style='font-size: 100px;'>${temperature}℃</h1>`;
+            document.getElementById(
+              "displayLocation"
+            ).innerHTML = `${res.name}, ${res.sys.country}`;
+            document.getElementById(
+              "displayDescription"
+            ).innerHTML = `${res.weather[0].description}`;
+
+            // Change background image based on weather description
+            const body = document.getElementById("body");
+            const description = res.weather[0].description.toLowerCase();
+
+            if (description.includes("clear sky")) {
+              body.style.backgroundImage = "url('/Images/clear sky.jpg')";
+            } else if (description.includes("few clouds")) {
+              body.style.backgroundImage = "url('/Images/few clouds.jpg')";
+            } else if (description.includes("scattered clouds")) {
+              body.style.backgroundImage = "url('/Images/scattered cloud.jpg')";
+            } else if (description.includes("overcast clouds")) {
+              body.style.backgroundImage = "url('/Images/overcast cloud.jpg')";
+            } else if (description.includes("broken clouds")) {
+              body.style.backgroundImage = "url('/Images/broken clouds.webp')";
+            } else if (description.includes("light rain")) {
+              body.style.backgroundImage = "url('/Images/light rain.gif')";
+            } else if (description.includes("heavy rain")) {
+              body.style.backgroundImage = "url('/Images/heavy rain.gif')";
+            } else if (description.includes("light snow")) {
+              body.style.backgroundImage = "url('/Images/light snow.gif')";
+            } else if (description.includes("mist")) {
+              body.style.backgroundImage = "url('/Images/mist.avif')";
+            } else if (description.includes("light drizzle")) {
+              body.style.backgroundImage = "url('/Images/drizzle.webp')";
+            } else {
+              body.style.backgroundImage = "url('photo.jpg')";
+            }
+          })
+          .catch((error) => {
+            hideLoader(); // Hide loader on error
+            console.error("Error fetching weather data:", error);
+          });
+      }
+
+      function getLocation() {
+        showLoader();
+        navigator.geolocation
+          .getCurrentPosition((location) => {
+            let latitude = location.coords.latitude;
+            let longitude = location.coords.longitude;
+            let endpoint2 = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}`;
+            fetch(endpoint2)
+              .then((response) => response.json())
+              .then((convertedResponse) => {
+                hideLoader();
+                let convert = convertedResponse;
+                document.getElementById(
+                  "humidity"
+                ).innerHTML = `${convert.main.humidity}%`;
+                document.getElementById(
+                  "wind"
+                ).innerHTML = `${convert.wind.speed} m/s`;
+                document.getElementById("minimum").innerHTML = `${(
+                  convert.main.temp_min - 273
+                ).toFixed(1)}℃`;
+                document.getElementById("maximum").innerHTML = `${(
+                  convert.main.temp_max - 273
+                ).toFixed(1)}℃`;
+                document.getElementById("feels").innerHTML = `${(
+                  convert.main.feels_like - 273
+                ).toFixed(1)}℃`;
+                let temperature = (convert.main.temp - 273).toFixed(0);
+                document.getElementById(
+                  "displayTemp"
+                ).innerHTML = `<h1 style='font-size: 100px;'>${temperature}℃</h1>`;
+                document.getElementById(
+                  "displayLocation"
+                ).innerHTML = `${convert.name}, ${convert.sys.country}`;
+                document.getElementById(
+                  "displayDescription"
+                ).innerHTML = `${convert.weather[0].description}`;
+
+                // Change background image based on weather description
+                const body = document.getElementById("body");
+                const description =
+                  convert.weather[0].description.toLowerCase();
+
+                if (description.includes("clear sky")) {
+                  body.style.backgroundImage = "url('/Images/clear sky.jpg')";
+                } else if (description.includes("few clouds")) {
+                  body.style.backgroundImage = "url('/Images/few clouds.jpg')";
+                } else if (description.includes("scattered clouds")) {
+                  body.style.backgroundImage =
+                    "url('/Images/scattered cloud.jpg')";
+                } else if (description.includes("overcast clouds")) {
+                  body.style.backgroundImage =
+                    "url('/Images/overcast cloud.jpg')";
+                } else if (description.includes("broken clouds")) {
+                  body.style.backgroundImage =
+                    "url('/Images/broken clouds.webp')";
+                } else if (description.includes("light rain")) {
+                  body.style.backgroundImage = "url('/Images/light rain.gif')";
+                } else if (description.includes("heavy rain")) {
+                  body.style.backgroundImage = "url('/Images/heavy rain.gif')";
+                } else if (description.includes("light snow")) {
+                  body.style.backgroundImage = "url('/Images/light snow.gif')";
+                } else if (description.includes("mist")) {
+                  body.style.backgroundImage = "url('/Images/mist.avif')";
+                } else if (description.includes("light drizzle")) {
+                  body.style.backgroundImage = "url('/Images/drizzle.webp')";
+                } else {
+                  body.style.backgroundImage = "url('photo.jpg')";
+                }
+              });
+          })
+          .catch((error) => {
+            hideLoader(); // Hide loader on error
+            console.error("Error fetching location data:", error);
+          });
+      }
+    </script>
+  </body>
 </html>
